@@ -1,13 +1,15 @@
 package com.example.myapplication.ui.dashboard
-
+import android.arch.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.support.v4.app.Fragment
-import android.arch.lifecycle.ViewModelProvider
+import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentHomeBinding
+import com.example.myapplication.ui.Adapters.SubjectsAdapter
+import com.example.myapplication.ui.Adapters.SubjectsData
 
 class DashboardFragment : Fragment() {
 
@@ -27,19 +29,65 @@ class DashboardFragment : Fragment() {
                 this,
                 ViewModelProvider.NewInstanceFactory()
             ).get(DashBoardViewModel::class.java)
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+        val root: View =
+            binding.root
         return root
     }
+lateinit var subsrecy : RecyclerView
+lateinit var subsadap : SubjectsAdapter
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+     super.onViewCreated(view, savedInstanceState)
+     subsrecy = view.findViewById(R.id.subjects_recycler)
+        creat()
+        subsadap= SubjectsAdapter(subsList)
+        subsrecy.adapter = subsadap
+    }
+
+    lateinit var  subsList : MutableList<SubjectsData>
+    fun creat(){
+subsList= mutableListOf()
+        for (i in 1..10) {
+            subsList.add(
+                SubjectsData(
+                    subjectName = "subject $i",
+                    backGroundImageDAsh = R.drawable.background,
+                    progress = "60 %"
+                )
+            )
+            subsList.add(
+                SubjectsData(
+                    subjectName = "computer vision",
+                    backGroundImageDAsh = R.drawable.background2,
+                    progress = "70 %"
+                )
+            )
+            subsList.add(
+                SubjectsData(
+                    subjectName = "image processing",
+                    backGroundImageDAsh = R.drawable.background3,
+                    progress = "80 %"
+                )
+            )
+            subsList.add(
+                SubjectsData(
+                    subjectName = "logic design",
+                    backGroundImageDAsh = R.drawable.background4,
+                    progress = "90 %"
+                )
+            )
+            subsList.add(
+                SubjectsData(
+                    subjectName = "Genetic Algorithm",
+                    backGroundImageDAsh = R.drawable.background5,
+                    progress = "95 %"
+                )
+            )
+        }
+        }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-}
+  }
