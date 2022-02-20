@@ -7,12 +7,11 @@
     tools:context=".ui.dashboard.DashboardFragment">
 
     <android.support.v7.widget.RecyclerView
-       android:id="@+id/subjects_recycler"
+        android:id="@+id/subjects_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-android:orientation="vertical"
+        android:orientation="vertical"
         tools:listitem="@layout/subjects_layout"
-
         />
 </android.support.constraint.ConstraintLayout>

@@ -24,8 +24,8 @@ class SubjectsAdapter(val subjects: MutableList<SubjectsData>):RecyclerView.Adap
 
     override fun onBindViewHolder(p0: SubjectViewHolder, p1: Int) {
         val subs = subjects[p1]
-p0.subjectName.setText(subs.subjectName)
-p0.backgroundImage.setImageResource(subs.backGroundImageDAsh)
+        p0.subjectName.setText(subs.subjectName)
+        p0.backgroundImage.setImageResource(subs.backGroundImageDAsh)
         p0.progressInSub.setText(subs.progress)
     }
 
