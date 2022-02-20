@@ -16,5 +16,10 @@
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/message"
             android:title="@string/messages" />
+        <item
+            android:id="@+id/submit2"
+            android:icon="@drawable/add_new_logo"
+            android:title="Submit"
+            />
     </group>
 </menu>
