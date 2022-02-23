@@ -29,6 +29,10 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
+            android:name=".Lessons"
+            android:exported="true"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
 
     </application>
 

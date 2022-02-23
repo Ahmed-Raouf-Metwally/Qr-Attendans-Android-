@@ -22,9 +22,4 @@
         android:name="com.example.myapplication.ui.message.MessageFragment"
         android:label="@string/messages"
         tools:layout="@layout/fragment_slideshow" />
-    <fragment
-        android:id="@+id/submit2"
-        android:name="com.example.myapplication.Submit"
-        android:label="submit"
-        tools:layout="@layout/fragment_submit" />
 </navigation>

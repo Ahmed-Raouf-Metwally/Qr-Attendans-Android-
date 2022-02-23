@@ -9,17 +9,29 @@ import android.widget.TextView
 import com.example.myapplication.R
 
 class SubjectsAdapter(val subjects: MutableList<SubjectsData>):RecyclerView.Adapter<SubjectsAdapter.SubjectViewHolder>() {
-    class SubjectViewHolder(ItemView : View):RecyclerView.ViewHolder(ItemView){
-        val backgroundImage : ImageView = ItemView.findViewById(com.example.myapplication.R.id.background_views)
-        val subjectName : TextView = ItemView.findViewById(R.id.subject_name)
-        val progressInSub :TextView =ItemView.findViewById(com.example.myapplication.R.id.progressBar)
+    class SubjectViewHolder(ItemView: View, subLitener: OnSubjectClickListener) :
+        RecyclerView.ViewHolder(ItemView) {
+        val backgroundImage: ImageView =
+            ItemView.findViewById(com.example.myapplication.R.id.background_views)
+        val subjectName: TextView = ItemView.findViewById(R.id.subject_name)
+        val progressInSub: TextView =
+            ItemView.findViewById(com.example.myapplication.R.id.progressBar)
 
+        init {
+            ItemView.setOnClickListener {
+                subLitener.onSubjectClick(adapterPosition)
+            }
+        }
     }
 
+    private lateinit var subjcetListener: OnSubjectClickListener
+    public fun setSubjectClickListener(subLitener: OnSubjectClickListener) {
+        subjcetListener = subLitener
+    }
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): SubjectViewHolder {
-        val View = LayoutInflater.from(p0.context,).inflate(R.layout.subjects_layout,p0,false)
-        return SubjectViewHolder(View);
+        val View = LayoutInflater.from(p0.context).inflate(R.layout.subjects_layout, p0, false)
+        return SubjectViewHolder(View, subjcetListener);
     }
 
     override fun onBindViewHolder(p0: SubjectViewHolder, p1: Int) {
@@ -31,5 +43,9 @@ class SubjectsAdapter(val subjects: MutableList<SubjectsData>):RecyclerView.Adap
 
     override fun getItemCount(): Int {
         return subjects.size
+    }
+
+    interface OnSubjectClickListener {
+        fun onSubjectClick(position: Int)
     }
 }
