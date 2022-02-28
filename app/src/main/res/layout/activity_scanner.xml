@@ -8,7 +8,7 @@ android:layout_height="match_parent"
 <com.budiyev.android.codescanner.CodeScannerView
     android:id="@+id/scan_block"
     android:layout_width="match_parent"
-    android:layout_height="400dp"
+    android:layout_height="match_parent"
     app:autoFocusButtonColor="@color/white"
     app:autoFocusButtonVisible="true"
     app:flashButtonColor="@color/white"

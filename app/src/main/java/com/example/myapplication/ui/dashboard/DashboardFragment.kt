@@ -60,7 +60,7 @@ subsList= mutableListOf()
         for (i in 1..10) {
             subsList.add(
                 SubjectsData(
-                    subjectName = "subject $i",
+                    subjectName = "electronics",
                     backGroundImageDAsh = R.drawable.background,
                     progress = "60 %"
                 )
