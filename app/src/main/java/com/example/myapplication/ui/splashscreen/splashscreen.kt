@@ -1,6 +1,6 @@
 package com.example.myapplication.ui.splashscreen
 
-import  android.support.v7.app.AppCompatActivity
+import  androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
 import android.content.Intent
 import android.os.Bundle

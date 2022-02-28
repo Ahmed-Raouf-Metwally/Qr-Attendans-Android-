@@ -1,17 +1,17 @@
 package com.example.myapplication.ui.dashboard
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.myapplication.Lessons
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.ui.Adapters.SubjectsAdapter
 import com.example.myapplication.ui.Adapters.SubjectsData
+import com.example.myapplication.user.Lessons
 
 class DashboardFragment : Fragment() {
 

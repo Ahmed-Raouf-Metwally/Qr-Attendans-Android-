@@ -1,18 +1,22 @@
 package com.example.myapplication
 
+import android.content.pm.PackageManager
 import android.os.Bundle
-import android.support.design.widget.NavigationView
-import android.support.design.widget.Snackbar
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.myapplication.databinding.ActivityMainBinding
-
+private const val Camer_Request_Code = 101
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -25,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.appBarMain.toolbar)
-
+         setUpPermission()
         binding.appBarMain.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
@@ -38,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
-            ,R.id.submit2), drawerLayout
+            ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
@@ -54,4 +58,30 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+    private fun setUpPermission(){
+
+        val permission = ContextCompat.checkSelfPermission(this,android.Manifest.permission.CAMERA)
+        if (permission != PackageManager.PERMISSION_GRANTED){
+            makeRequest()
+        }
+    }
+    private fun makeRequest(){
+        ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.CAMERA),
+            Camer_Request_Code)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when(requestCode){
+            Camer_Request_Code ->{
+                if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED ){
+                    Toast.makeText(this, "you need the camera permission to be able to use the app", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
 }

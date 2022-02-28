@@ -1,6 +1,6 @@
 package com.example.myapplication.ui.Adapters
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.myapplication.R
 
-class SubjectsAdapter(val subjects: MutableList<SubjectsData>):RecyclerView.Adapter<SubjectsAdapter.SubjectViewHolder>() {
+class SubjectsAdapter(val subjects: MutableList<SubjectsData>):
+    RecyclerView.Adapter<SubjectsAdapter.SubjectViewHolder>() {
     class SubjectViewHolder(ItemView: View, subLitener: OnSubjectClickListener) :
         RecyclerView.ViewHolder(ItemView) {
         val backgroundImage: ImageView =
