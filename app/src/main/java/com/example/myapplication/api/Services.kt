@@ -14,4 +14,8 @@ interface Services {
     fun LogIn(
         @Body stu : Student
     ):Call<LogInResponse> ;
+    @POST("logout")
+    fun Logout(
+        @Body stu : Student
+    ):Call<LogInResponse>
 }

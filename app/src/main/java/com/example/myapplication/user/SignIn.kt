@@ -17,7 +17,7 @@ import com.example.myapplication.model.Student
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
+lateinit var stu : Student
 class SignIn : AppCompatActivity() {
     lateinit var log_in: Button
     lateinit var toSignUp: TextView
@@ -46,7 +46,7 @@ class SignIn : AppCompatActivity() {
                 Password.requestFocus()
                 return@setOnClickListener
             }
-            lateinit var stu : Student
+
             stu = Student(email,password)
             ApiManager.getApis().LogIn(stu).enqueue(object :Callback<LogInResponse>{
                 override fun onResponse(
@@ -54,6 +54,7 @@ class SignIn : AppCompatActivity() {
                     response: Response<LogInResponse>
                 ) {
                     if(response.body()?.id != null){
+                        stu = Student(response.body()?.iD)
                         val intent = Intent(this@SignIn, MainActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
