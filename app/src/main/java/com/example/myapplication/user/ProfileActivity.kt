@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import com.example.myapplication.R
 import com.example.myapplication.api.ApiManager
@@ -14,10 +15,19 @@ import retrofit2.Response
 
 class ProfileActivity : AppCompatActivity() {
     lateinit var signOutButton: Button
+    lateinit var stuName :TextView
+    lateinit var stuEmail : TextView
+    lateinit var stuLevel : TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
         signOutButton = findViewById(R.id.sign_out_button)
+        stuName = findViewById(R.id.name_profile_view)
+        stuEmail = findViewById(R.id.email_prof_view)
+        stuLevel = findViewById(R.id.level_prof_view)
+        stuName.setText(LogInResponse?.name)
+        stuEmail.setText(LogInResponse?.email)
+        stuLevel.setText(LogInResponse?.level.toString())
         signOutButton.setOnClickListener {
             ApiManager.getApis().Logout(stu).enqueue(object : Callback<LogInResponse> {
                 override fun onResponse(

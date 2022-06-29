@@ -8,9 +8,12 @@ class Student {
 
     constructor(ID: Int?) {
         this.ID = ID
+        this.sID = ID
     }
 
     private var Email : String? = null
     private  var Password:String? = null
     private var ID: Int? = null
+    private var sID:Int? = null
+
 }

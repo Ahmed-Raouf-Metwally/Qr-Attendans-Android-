@@ -7,12 +7,21 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.myapplication.R
+import com.example.myapplication.api.ApiManager
 import com.example.myapplication.databinding.FragmentHomeBinding
+import com.example.myapplication.model.SubjectsItem
+import com.example.myapplication.model.SubjectsResponse
 import com.example.myapplication.ui.Adapters.SubjectsAdapter
 import com.example.myapplication.ui.Adapters.SubjectsData
 import com.example.myapplication.user.Lessons
+import com.example.myapplication.user.stu
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
+var SubjectsResponse: SubjectsResponse? = null
 class DashboardFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -43,7 +52,7 @@ lateinit var subsadap : SubjectsAdapter
         super.onViewCreated(view, savedInstanceState)
         subsrecy = view.findViewById(R.id.subjects_recycler)
         creat()
-        subsadap = SubjectsAdapter(subsList)
+        subsadap = SubjectsAdapter(subNameList)
         subsrecy.adapter = subsadap
         subsadap.setSubjectClickListener(object : SubjectsAdapter.OnSubjectClickListener {
             override fun onSubjectClick(position: Int) {
@@ -54,49 +63,26 @@ lateinit var subsadap : SubjectsAdapter
         })
     }
 
-    lateinit var  subsList : MutableList<SubjectsData>
+    var subNameList : MutableList<SubjectsItem?>? = SubjectsResponse?.subjects ?: mutableListOf()
     fun creat(){
-subsList= mutableListOf()
-        for (i in 1..10) {
-            subsList.add(
-                SubjectsData(
-                    subjectName = "electronics",
-                    backGroundImageDAsh = R.drawable.background,
-                    progress = "60 %"
-                )
-            )
-            subsList.add(
-                SubjectsData(
-                    subjectName = "computer vision",
-                    backGroundImageDAsh = R.drawable.background2,
-                    progress = "70 %"
-                )
-            )
-            subsList.add(
-                SubjectsData(
-                    subjectName = "image processing",
-                    backGroundImageDAsh = R.drawable.background3,
-                    progress = "80 %"
-                )
-            )
-            subsList.add(
-                SubjectsData(
-                    subjectName = "logic design",
-                    backGroundImageDAsh = R.drawable.background4,
-                    progress = "90 %"
-                )
-            )
-            subsList.add(
-                SubjectsData(
-                    subjectName = "Genetic Algorithm",
-                    backGroundImageDAsh = R.drawable.background5,
-                    progress = "95 %"
-                )
-            )
-        }
+        ApiManager.getApis().getStudentSubject(stu).enqueue(object : Callback<SubjectsResponse> {
+            override fun onResponse(
+                call: Call<SubjectsResponse>,
+                response: Response<SubjectsResponse>
+            ) {
+                Toast.makeText(requireContext(), "DONE", Toast.LENGTH_SHORT).show()
+                SubjectsResponse = response.body()
+            }
+
+            override fun onFailure(call: Call<SubjectsResponse>, t: Throwable) {
+                Toast.makeText(requireContext(), "network issue", Toast.LENGTH_SHORT).show()            }
+
+        })
         }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-  }
+
+}
+

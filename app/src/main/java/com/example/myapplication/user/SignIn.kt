@@ -18,6 +18,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 lateinit var stu : Student
+ var LogInResponse:LogInResponse? = null
 class SignIn : AppCompatActivity() {
     lateinit var log_in: Button
     lateinit var toSignUp: TextView
@@ -55,6 +56,7 @@ class SignIn : AppCompatActivity() {
                 ) {
                     if(response.body()?.id != null){
                         stu = Student(response.body()?.iD)
+                        LogInResponse = response.body()
                         val intent = Intent(this@SignIn, MainActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
