@@ -16,6 +16,7 @@
         app:layout_constraintBottom_toTopOf="@id/container"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+
         />
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,9 +35,10 @@
             android:id="@+id/email"
             android:hint="Email"
             android:textColorHint="#000"
-            android:background="#fff"
+            android:background="@drawable/buttons"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
+            android:textAlignment="center"
             />
 
         <EditText
@@ -45,9 +47,11 @@
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
-            android:background="#fff"
+            android:background="@drawable/buttons"
             android:hint="Password"
             android:textColorHint="#000"
+            android:textAlignment="center"
+            android:inputType="numberPassword"
 
             />
 
@@ -62,16 +66,7 @@
             android:layout_gravity="center_horizontal"
             />
 
-        <TextView
-            android:id="@+id/toSignup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Still don't have an account!!"
-            android:textColor="#2196F3"
-            android:paddingLeft="10dp"
-            android:paddingBottom="5dp"
-            android:textSize="20sp"
-            />
+
     </LinearLayout>
 
 

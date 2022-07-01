@@ -74,6 +74,7 @@ lateinit var subsadap : SubjectsAdapter
             ) {
                 Toast.makeText(requireContext(), "DONE", Toast.LENGTH_SHORT).show()
                 SubjectsResponse = response.body()
+                subsadap.setData(response.body()?.subjects)
             }
 
             override fun onFailure(call: Call<SubjectsResponse>, t: Throwable) {

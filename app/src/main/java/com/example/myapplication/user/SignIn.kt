@@ -21,7 +21,6 @@ lateinit var stu : Student
  var LogInResponse:LogInResponse? = null
 class SignIn : AppCompatActivity() {
     lateinit var log_in: Button
-    lateinit var toSignUp: TextView
     lateinit var Email : EditText
     lateinit var Password : EditText
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +29,6 @@ class SignIn : AppCompatActivity() {
         Email = findViewById(R.id.email)
         Password = findViewById(R.id.password)
         log_in = findViewById(R.id.log_in)
-        toSignUp = findViewById(R.id.toSignup)
         log_in.setOnClickListener {
             val email = Email.text.toString().trim()
             val password = Password.text.toString().trim()
@@ -73,11 +71,7 @@ class SignIn : AppCompatActivity() {
             })
 
         }
-        toSignUp.setOnClickListener {
-            val intent = Intent(this, SignUp::class.java)
-            startActivity(intent)
-            finish()
-        }
+
     }
 
 }
