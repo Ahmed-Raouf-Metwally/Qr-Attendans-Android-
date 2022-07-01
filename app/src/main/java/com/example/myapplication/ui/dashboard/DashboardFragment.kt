@@ -22,6 +22,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 var SubjectsResponse: SubjectsResponse? = null
+var MatId:Int?= null
 class DashboardFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -56,6 +57,7 @@ lateinit var subsadap : SubjectsAdapter
         subsrecy.adapter = subsadap
         subsadap.setSubjectClickListener(object : SubjectsAdapter.OnSubjectClickListener {
             override fun onSubjectClick(position: Int) {
+                 MatId = SubjectsResponse?.subjects?.get(position)?.iD
                 var intent = Intent(context, Lessons::class.java)
                 startActivity(intent)
             }

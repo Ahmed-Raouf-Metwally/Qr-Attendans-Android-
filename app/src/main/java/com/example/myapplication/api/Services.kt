@@ -1,9 +1,7 @@
 package com.example.myapplication.api
 
 
-import com.example.myapplication.model.LogInResponse
-import com.example.myapplication.model.Student
-import com.example.myapplication.model.SubjectsResponse
+import com.example.myapplication.model.*
 import retrofit2.Call
 import retrofit2.http.*
 import retrofit2.http.FormUrlEncoded
@@ -23,4 +21,9 @@ interface Services {
     fun getStudentSubject(
         @Body stu: Student
     ):Call<SubjectsResponse>
+    @POST("getStAlltopic")
+    fun getAllTopic(@Body Subjects:Subjects):Call<GetAllTopicResponse>
+@POST("Attend")
+fun attend(@Body Attendreq:AttendanceRequest):Call<AttendanceResponse>
+
 }

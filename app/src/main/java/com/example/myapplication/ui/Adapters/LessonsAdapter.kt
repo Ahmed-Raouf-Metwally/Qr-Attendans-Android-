@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.myapplication.R
+import com.example.myapplication.model.TopicsItem
 
-class LessonsAdapter(val LessonsNames: MutableList<String>) :
+class LessonsAdapter(var LessonsNames: MutableList<TopicsItem?>?) :
     RecyclerView.Adapter<LessonsAdapter.lessonViewHolder>() {
     class lessonViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         val lessonName: TextView = item.findViewById(R.id.lesson_assignment_name)
+        val lessonDesc : TextView = item.findViewById(R.id.descriptio_lesson)
     }
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): lessonViewHolder {
@@ -19,11 +21,16 @@ class LessonsAdapter(val LessonsNames: MutableList<String>) :
     }
 
     override fun onBindViewHolder(p0: lessonViewHolder, p1: Int) {
-        val lessonName = LessonsNames[p1]
-        p0.lessonName.setText(lessonName)
+        val lessonName = LessonsNames?.get(p1)
+        p0.lessonName?.setText(lessonName?.name)
+        p0.lessonDesc?.setText(lessonName?.discption)
     }
 
     override fun getItemCount(): Int {
-        return LessonsNames.size
+        return LessonsNames?.size?:0
+    }
+    fun setData(data: MutableList<TopicsItem?>?){
+        LessonsNames = data
+        notifyDataSetChanged()
     }
 }

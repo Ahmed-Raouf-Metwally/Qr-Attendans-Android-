@@ -9,7 +9,7 @@ import android.widget.TextView
 import com.example.myapplication.R
 import com.example.myapplication.model.SubjectsItem
 
-class SubjectsAdapter(val subjects: MutableList<SubjectsItem?>?):
+class SubjectsAdapter(var subjects: MutableList<SubjectsItem?>?):
     RecyclerView.Adapter<SubjectsAdapter.SubjectViewHolder>() {
     class SubjectViewHolder(ItemView: View, subLitener: OnSubjectClickListener) :
         RecyclerView.ViewHolder(ItemView) {
@@ -46,8 +46,13 @@ class SubjectsAdapter(val subjects: MutableList<SubjectsItem?>?):
     override fun getItemCount(): Int {
         return subjects?.size?:0
     }
+    fun setData(data: MutableList<SubjectsItem?>?){
+        subjects= data
+        notifyDataSetChanged()
+    }
 
     interface OnSubjectClickListener {
         fun onSubjectClick(position: Int)
     }
+
 }

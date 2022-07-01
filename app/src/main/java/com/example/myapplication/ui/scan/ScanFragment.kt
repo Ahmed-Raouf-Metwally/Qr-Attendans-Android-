@@ -42,7 +42,7 @@ lateinit var attendeButton: Button
         super.onViewCreated(view, savedInstanceState)
         attendeButton = view.findViewById(R.id.to_scan)
         attendeButton.setOnClickListener {
-          val intent = Intent(context, ScannerActivity::class.java).apply {
+          val intent = Intent(requireContext(), ScannerActivity::class.java).apply {
               startActivity(this)
           }
         }
